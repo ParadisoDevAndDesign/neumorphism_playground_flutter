@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:neumorphism_playground/constants.dart';
-import 'controls/love_button.dart';
-import 'controls/toggle_button.dart';
+import 'package:neumorphism_playground/widgets/display_image.dart';
+import 'widgets/reusable_button.dart';
+import 'widgets/toggle_button.dart';
 
 class ControlHolder extends StatefulWidget {
   const ControlHolder({super.key});
@@ -19,12 +20,41 @@ class _ControlHolderState extends State<ControlHolder> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
+            DisplayImage(),
+            SizedBox(
+              height: 75.0,
+            ),
             ToggleButton(),
             SizedBox(
               height: 75.0,
             ),
-            LoveButton(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ReusableButton(
+                  iconData: Icons.favorite,
+                  colourOn: Colors.pink.shade500,
+                  colourOff: Colors.pink.shade100,
+                ),
+                SizedBox(
+                  width: 25,
+                ),
+                ReusableButton(
+                  iconData: Icons.star,
+                  colourOn: Colors.yellow.shade400,
+                  colourOff: Colors.yellow.shade100,
+                ),
+                SizedBox(
+                  width: 25,
+                ),
+                ReusableButton(
+                  iconData: Icons.person_add_alt_rounded,
+                  colourOn: Colors.blue.shade500,
+                  colourOff: Colors.blue.shade100,
+                ),
+              ],
+            )
           ],
         ),
       ),

@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:neumorphism_playground/constants.dart';
 
-class LoveButton extends StatefulWidget {
-  const LoveButton({super.key});
+class ReusableButton extends StatefulWidget {
+  IconData iconData;
+  Color colourOn;
+  Color colourOff;
+  ReusableButton({
+    super.key,
+    required this.iconData,
+    required this.colourOn,
+    required this.colourOff,
+  });
 
   @override
-  State<LoveButton> createState() => _LoveButtonState();
+  State<ReusableButton> createState() => _ReusableButtonState();
 }
 
-class _LoveButtonState extends State<LoveButton> {
+class _ReusableButtonState extends State<ReusableButton> {
   bool isButtonPressed = false;
 
   void onButtonPress() {
@@ -58,10 +66,10 @@ class _LoveButtonState extends State<LoveButton> {
                     ],
                   ),
                 )
-              : BoxDecoration(
+              : const BoxDecoration(
                   color: kMainColor,
-                  borderRadius: BorderRadius.circular(50),
-                  boxShadow: const [
+                  shape: BoxShape.circle,
+                  boxShadow: [
                     BoxShadow(
                       color: Color(0xFF440065),
                       offset: Offset(6, 6),
@@ -79,9 +87,8 @@ class _LoveButtonState extends State<LoveButton> {
           child: GestureDetector(
             onTap: onButtonPress,
             child: Icon(
-              Icons.favorite,
-              color:
-                  isButtonPressed ? Colors.pink.shade500 : Colors.pink.shade100,
+              widget.iconData,
+              color: isButtonPressed ? widget.colourOn : widget.colourOff,
               size: 50.0,
             ),
           ),
